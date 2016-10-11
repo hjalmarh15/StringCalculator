@@ -6,21 +6,11 @@ public class Calculator {
 			return 0;
 		else if(text.contains("\n")) {
 			String [] newLineSplit = text.split("\n");
-			int result = 0	;
-			for(String string : newLineSplit ) {
-				if(string.contains(",")) {
-					String[] numbers = string.split(",");
-					result += sum(numbers);
-				}
-				else {
-					result += toInt(string);
-				}
-			}
-			return result;
+			return sum(newLineSplit, "\n");
 		}
 		else if(text.contains(",")) {
 			String[] numbers = text.split(",");
-			return sum(numbers);
+			return sum(numbers, ",");
 		}
 		else {
 			return toInt(text);
@@ -31,11 +21,26 @@ public class Calculator {
 		return Integer.parseInt(text);
 	}
 
-	private static int sum(String [] numbers) {
+	private static int sum(String [] numbers, String delimiter) {
 		int result = 0;
-		for(String number : numbers) {
-			result += toInt(number);
+
+		if(delimiter.equals("\n")) {
+			for(String string : numbers ) {
+				if(string.contains(",")) {
+					String[] moreNumbers = string.split(",");
+					result += sum(moreNumbers, ",");
+				}
+				else {
+					result += toInt(string);
+				}
+			}
 		}
+		else if(delimiter.equals(",")) {
+			for(String number : numbers) {
+				result += toInt(number);
+			}
+		}
+
 		return result;
 	}
 }
