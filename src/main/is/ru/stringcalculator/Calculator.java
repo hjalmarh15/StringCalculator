@@ -23,7 +23,7 @@ public class Calculator {
 
 	private static int sum(String [] numbers, String delimiter) {
 		int result = 0;
-
+		String negatives = "";
 		if(delimiter.equals("\n")) {
 			for(String string : numbers ) {
 				if(string.contains(",")) {
@@ -31,19 +31,25 @@ public class Calculator {
 					result += sum(moreNumbers, ",");
 				}
 				else {
-					result += toInt(string);
+					if(toInt(string) < 1001)
+						result += toInt(string);
 				}
-			}
-		}
-		else if(delimiter.equals(",")) {
-			for(String number : numbers) {
-				if(toInt(number) < 0) {
-					throw new IllegalArgumentException("Negatives not allowed: " + number);
-				}
-				result += toInt(number);
 			}
 		}
 
+		else if(delimiter.equals(",")) {
+			for(String number : numbers) {
+				if(toInt(number) < 0) {
+					 negatives += number;
+				}
+				if(toInt(number) < 1001) {
+					result += toInt(number);
+				}
+			}
+		}
+		if (!negatives.equals("")) {
+			throw new IllegalArgumentException("Negatives not allowed: " + negatives);
+		}
 		return result;
 	}
 }

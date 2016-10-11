@@ -47,6 +47,13 @@ public class CalculatorTest {
 		Calculator.add("-1,2");
 	}
 
+	@Test
+	public void testAboveThousand() {
+		assertEquals(2, Calculator.add("1001,2"));
+	}
 
-
+	@Test
+	public void testAboveThousand2() {
+		assertEquals(0, Calculator.add("1001,1002,1003"));
+	}
 }
