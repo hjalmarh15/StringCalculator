@@ -38,7 +38,7 @@ public class Calculator {
 		else if(delimiter.equals(",")) {
 			for(String number : numbers) {
 				if(toInt(number) < 0) {
-					throw new IllegalArgumentException("Negatives not allowed: -1");
+					throw new IllegalArgumentException("Negatives not allowed: " + number);
 				}
 				result += toInt(number);
 			}
