@@ -8,7 +8,7 @@ public class Calculator {
 		String delimiter = ",|\n";
 		if(text.startsWith("//")) {
 			int index = text.indexOf("//") + 2;
-			delimiter = text.substring(index, index + 1);
+			delimiter = text.substring(index, index + 1) + "|\n";
 			withoutDelimiterLine = text.substring(text.indexOf("\n")+1);
 		}
 		String [] numbers = withoutDelimiterLine.split(delimiter);

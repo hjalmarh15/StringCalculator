@@ -81,4 +81,21 @@ public class CalculatorTest {
 	public void testSpecialDelimiter3() {
 		assertEquals(3, Calculator.add("//x\n1x2"));
 	}
+
+	@Test
+	public void testSpecialDelimiterAndNegativeNumbers() {
+		thrown.expect(IllegalArgumentException.class);
+		thrown.expectMessage("Negatives not allowed: -1, -2");
+		Calculator.add("//;\n-1;-2;3");
+	}
+
+	@Test
+	public void testSpecialDelimiterAndAboveThousand() {
+		assertEquals(0, Calculator.add("//~\n1001~1002~1003"));
+	}
+
+	@Test
+	public void testSpecialDelimiterAndNewLine() {
+		assertEquals(6, Calculator.add("//:\n1:2\n3"));
+	}
 }
