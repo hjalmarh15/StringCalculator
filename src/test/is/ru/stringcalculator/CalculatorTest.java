@@ -66,4 +66,9 @@ public class CalculatorTest {
 	public void testAboveThousand2() {
 		assertEquals(0, Calculator.add("1001,1002,1003"));
 	}
+
+	@Test
+	public void testNewDelimiter() {
+		assertEquals(3, Calculator.add("//;\n1;2"));
+	}
 }

@@ -4,8 +4,13 @@ public class Calculator {
 	public static int add(String text) {
 		if(text.equals(""))
 			return 0;
-
-		String [] numbers = text.split(",|\n");
+		String withoutDelimiterLine= text;
+		String delimiter = ",|\n";
+		if(text.startsWith("//")) {
+			delimiter = text.substring(text.indexOf("//")+ 2, text.indexOf("//") + 3);
+			withoutDelimiterLine = text.substring(text.indexOf("\n")+1);
+		}
+		String [] numbers = withoutDelimiterLine.split(delimiter);
 		checkNegatives(numbers);
 		return sum(numbers);
 	}
