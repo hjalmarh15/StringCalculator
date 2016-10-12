@@ -4,10 +4,11 @@ public class Calculator {
 	public static int add(String text) {
 		if(text.equals(""))
 			return 0;
-		String withoutDelimiterLine= text;
+		String withoutDelimiterLine = text;
 		String delimiter = ",|\n";
 		if(text.startsWith("//")) {
-			delimiter = text.substring(text.indexOf("//")+ 2, text.indexOf("//") + 3);
+			int index = text.indexOf("//") + 2;
+			delimiter = text.substring(index, index + 1);
 			withoutDelimiterLine = text.substring(text.indexOf("\n")+1);
 		}
 		String [] numbers = withoutDelimiterLine.split(delimiter);
